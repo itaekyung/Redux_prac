@@ -13,6 +13,10 @@ const initialState = {
 // 액션 = 스테이트를 어떻게 수정할건지 액션에 대해 표현하는 액션객체
 const counter = (state = initialState, action) => {
   switch (action.type) {
+    case "PLUS_ONE": //액션에 있는 타입을 플러스 원으로 던져주면 되겠다 다시 app.js로 (8*)
+      return { number: state.number + 1 }; //객체로 넣어줘야한다. (10*)
+    case "MINUS_ONE":
+      return { number: state.number - 1 };
     default:
       return state; // 아무것도 없을 땐 최초 스테이트를 리턴해주면 된다는 소리
   }

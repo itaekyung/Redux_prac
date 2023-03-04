@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   //여기에서 스토어에 접근하여, counter 의 값을 읽어오고 싶다! (6*)
@@ -12,8 +12,36 @@ function App() {
   const counter = useSelector((state) => {
     return state.counter;
   });
+
+  //디스패치를 가져와보자. (9*)
+  const dispatch = useDispatch();
+
   console.log(counter.number); // counter : {number : 0}
-  return <div>Redux!</div>;
+  return (
+    <>
+      <div>현재카운트 : {counter.number}</div>
+      <button
+        onClick={() => {
+          //+1을 해주는 로직을 써주면 된다.
+          // counter.js로 넘어가기 (7*)
+          dispatch({
+            type: "PLUS_ONE",
+          }); //인자로 액션 객체를 넣어줘야 한다 키,밸류 타입과 payload
+        }}
+      >
+        +
+      </button>
+      <button
+        onClick={() => {
+          dispatch({
+            type: "MINUS_ONE",
+          });
+        }}
+      >
+        -
+      </button>
+    </>
+  );
 }
 
 export default App;
